@@ -1,25 +1,32 @@
-<!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | Reservation_system</title>
-  </head>
-  <body style="text-align: center">
-    <canvas id="unity-canvas" width=960 height=600 style="width: 960px; height: 600px; background: #231F20"></canvas>
-    <script src="Build/-.loader.js"></script>
-    <script>
-      createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/-.data.br",
-        frameworkUrl: "Build/-.framework.js.br",
-        codeUrl: "Build/-.wasm.br",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "中國科技大學台北校區社團教室預約系統",
-        productName: "Reservation_system",
-        productVersion: "1.0",
-        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-      });
-    </script>
-  </body>
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>index</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script>
+$(document).ready(function(){
+  $("p").click(function(){
+    $(this).hide();
+  });
+});
+		function getOAuthService() {
+  return OAuth2.createService('SERVICE_NAME')
+      .setAuthorizationBaseUrl('SERVICE_AUTH_URL')
+      .setTokenUrl('SERVICE_AUTH_TOKEN_URL')
+      .setClientId('CLIENT_ID')
+      .setClientSecret('CLIENT_SECRET')
+      .setScope('SERVICE_SCOPE_REQUESTS')
+      .setCallbackFunction('authCallback')
+      .setCache(CacheService.getUserCache())
+      .setPropertyStore(PropertiesService.getUserProperties());
+}
+</script>
+</head>
+	
+<p>如果您点击我，我会消失。</p>
+<p>点击我，我会消失。</p>
+<p>也要点击我哦。</p>
+<body>
+</body>
 </html>
