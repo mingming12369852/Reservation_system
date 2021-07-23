@@ -19,3 +19,19 @@
 	<button id="login-button" disabled>Login with Google</button>
 	</body>
 </html>
+
+https://script.google.com/macros/s/AKfycbxa-opIfGUszxHf6VPlddFBGr05GthmGCJpi3JkRHg/dev
+<script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
+<script>
+$.ajax({
+type: "post",
+data: {
+"method": "read",
+"query": "Mary"
+},
+url: "https://script.google.com/macros/s/AKfycbwc5PjXDgPiRrQGUh2BomrZ6pjUbcrMbbYMtecOtfItxGiBgnwNivCM1hOWuPC27QVS/exec", // 填入網路應用程式網址
+success: function (e) {
+alert(e);
+}
+});
+</script>
