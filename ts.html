@@ -1,0 +1,71 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id"
+        content="222409392061-rute8gftvgj8tv1710kgnlnrgouera54.apps.googleusercontent.com">
+    <script>
+        /* This function is called when a new provider is added through the "Medical Providers" form
+        It sends an HTTP request to Google Maps Engine to add the new provider to the map */
+        function addNewtoTable(row) {
+            var aPIKey = "MY_API_KEY";
+            var bearer = "ACCESS_TOKEN_FROM_OAUTH_PLAYGROUND";
+            var projectID = "MY_PROJECT_ID";
+            var tableID = "MY_TABLE_ID";
+            //tutorial here https://developers.google.com/maps-engine/documentation/tutorial
+            var ss = SpreadsheetApp.getActiveSpreadsheet();
+            var sheet = ss.getSheetByName("Providers");
+
+            var address = sheet.getRange(row, 2).getValue();
+            var response = Maps.newGeocoder().geocode(address);
+            for (var j = 0; j < response.results.length; j++) {
+                var result = response.results[j];
+                //Logger.log('%s: %s, %s', result.formatted_address, result.geometry.location.lat,
+                //             result.geometry.location.lng);
+            };
+            var lat = result.geometry.location.lat;
+            var long = result.geometry.location.lng;
+            var name = '"' + sheet.getRange(row, 1).getValue() + '"';
+            var phone = '"' + sheet.getRange(row, 4).getValue().toString() + '"';
+            var email = '"' + sheet.getRange(row, 3).getValue() + '"';
+            var inbounds = '"' + sheet.getRange(row, 5).getValue().toString() + '"';
+            var outbounds = '"' + sheet.getRange(row, 6).getValue().toString() + '"';
+            var lastIn = '" ' + sheet.getRange(row, 7).getValue().toString() + ' "';
+            var lastOut = '" ' + sheet.getRange(row, 8).getValue().toString() + ' "';
+            var gxid = '"' + sheet.getRange(row, 9).getValue().toString() + '"';
+
+            //HTTP request goes here
+            var payload = '{features:[{type: "Feature",geometry:{type: "Point",coordinates: [' + long + ',' + lat + ']},properties: {gx_id: ' + gxid + ',name: ' + name + ',phone:' + phone + ',email:' + email + ',inbound:' + inbounds + ',outbound:' + outbounds + ',last_inbound:' + lastIn + ',last_outbound:' + lastOut + '}}]}';
+            Logger.log(payload);
+
+
+            var headers = { "Authorization": "Bearer ACCESS_TOKEN_FROM_OAUTH_PLAYGROUND", "Content-type": "application/json" };
+            var options = { "method": "post", "headers": headers, "payload": payload, "muteHttpExceptions": true };
+            var httpresponse = UrlFetchApp.fetch("https://www.googleapis.com/mapsengine/v1/tables/MY_TABLE_ID/features/batchInsert", options);
+            Logger.log(httpresponse);
+
+            if (httpresponse != "") {
+                MailApp.sendEmail('MY_EMAIL', 'HTTP Request Failed to Send', httpresponse);
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log("test2")
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+    </script>
+    <button id="login-button" disabled>Login with Google</button>
+</body>
+
+</html>

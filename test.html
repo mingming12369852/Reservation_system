@@ -1,42 +1,45 @@
 <html>
+
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
-	<meta name="google-signin-client_id" content="222409392061-rute8gftvgj8tv1710kgnlnrgouera54.apps.googleusercontent.com">
+	<meta name="google-signin-client_id"
+		content="222409392061-rute8gftvgj8tv1710kgnlnrgouera54.apps.googleusercontent.com">
+	<script>
+		// Create a request variable and assign a new XMLHttpRequest object to it.
+		var request = new XMLHttpRequest()
+
+		// Open a new connection, using the GET request on the URL endpoint
+		request.open('Get', 'https://script.googleapis.com/v1/scripts/AKfycbyIvGRV3Jawq5pUZMrIPsP640AUFz-jH6bNwCRt1Ub_GAtfXykywE5gC7L2gOGo4zJZ:run')
+
+		request.onload = function () {
+			// Begin accessing JSON data here
+		}
+
+
+		// Send request
+		request.send()
+	</script>
 	<script>
 		console.log("test5")
-		$.ajax({
-		type: "post",
-		data: {
-		"method": "doPost",
-		"query": "Mary",
-		'Access-Control-Allow-Origin':"https://abab5601.github.io"
-		},
-		url: "https://script.google.com/macros/s/AKfycbwNxCCPDyBYaFBm84PHZn1tZIyyk4cU4odn48_E2n8i9qWFSQqOflTiFuwBLZaV-Fyo/exec", // 填入網路應用程式網址
-		headers:{
-			'Access-Control-Allow-Origin':"https://abab5601.github.io"
-		},
-		success: function (e) {
-			
-		 console.log("test"+e)
-		}
-		});
-		</script>
-</head>
-	<body>
-		<div class="g-signin2" data-onsuccess="onSignIn"></div>
-		<script>
-			function onSignIn(googleUser) {
-  var profile = googleUser.getBasicProfile();
-  console.log("test2")
-  console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-  console.log('Name: ' + profile.getName());
-  console.log('Image URL: ' + profile.getImageUrl());
-  console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-}
-		</script>
-	<button id="login-button" disabled>Login with Google</button>
-	</body>
-</html>
 
+	</script>
+</head>
+
+<body>
+	<div class="g-signin2" data-onsuccess="onSignIn"></div>
+	<script>
+		function onSignIn(googleUser) {
+			var profile = googleUser.getBasicProfile();
+			console.log("test2")
+			console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+			console.log('Name: ' + profile.getName());
+			console.log('Image URL: ' + profile.getImageUrl());
+			console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+		}
+	</script>
+	<button id="login-button" disabled>Login with Google</button>
+</body>
+
+</html>
