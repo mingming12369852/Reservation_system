@@ -3,28 +3,37 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src ="https://apis.google.com/js/api.js"> </script> 
+    <script src="https://apis.google.com/js/api.js"></script>
     <script>
-        var GoogleAuth; // Google Auth object.
-        function initClient() {
+        function start() {
+            // 2. Initialize the JavaScript client library.
             gapi.client.init({
-                'apiKey': 'MsmElp3DS2swtgBRsI68W7cI',
+                'apiKey': 'https://script.google.com/macros/s/AKfycbwG0we5gamMLgBmve5cZX8jt1IElLwN1FCENNq-j5hoxZ0dZCaenNPbW-INs6tP_jKA/exec',
+                // Your API key will be automatically added to the Discovery Document URLs.
+                'discoveryDocs': ['https://people.googleapis.com/$discovery/rest'],
+                // clientId and scope are optional if auth is not required.
                 'clientId': '222409392061-rute8gftvgj8tv1710kgnlnrgouera54.apps.googleusercontent.com',
-                'scope': 'https://www.googleapis.com/auth/drive.metadata.readonly',
-                'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest']
+                'scope': 'profile',
             }).then(function () {
-                GoogleAuth = gapi.auth2.getAuthInstance();
-
-                // Listen for sign-in state changes.
-                GoogleAuth.isSignedIn.listen(updateSigninStatus);
+                // 3. Initialize and make the API request.
+                return gapi.client.people.people.get({
+                    'resourceName': 'people/me',
+                    'requestMask.includeField': 'person.names'
+                });
+            }).then(function (response) {
+                console.log(response.result);
+            }, function (reason) {
+                console.log('Error: ' + reason.result.error.message);
             });
-        }
-        GoogleAuth.signIn();
+        };
+        // 1. Load the JavaScript client library.
+        gapi.load('client', start);
     </script>
+
 </head>
 
 <body>
-  
+
 </body>
 
 </html>
