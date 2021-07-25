@@ -7,6 +7,7 @@
 	<meta name="google-signin-client_id"
 		content="222409392061-rute8gftvgj8tv1710kgnlnrgouera54.apps.googleusercontent.com">
 </head>
+
 <body>
 	<div class="g-signin2" data-onsuccess="onSignIn"></div>
 	<script>
@@ -17,11 +18,27 @@
 			console.log('Name: ' + profile.getName());
 			console.log('Image URL: ' + profile.getImageUrl());
 			console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-			googleUser.client.request({
-				path:"https://script.google.com/macros/s/AKfycbwG0we5gamMLgBmve5cZX8jt1IElLwN1FCENNq-j5hoxZ0dZCaenNPbW-INs6tP_jKA/exec",
-				method:"post",
-				params:{""}
+			var id_token = googleUser.getAuthResponse().id_token;
+			console.log("ID Token: " + id_token);
+			console.log('test11')
+			var test = googleUser.client.request({
+				path: "https://script.google.com/macros/s/AKfycbwG0we5gamMLgBmve5cZX8jt1IElLwN1FCENNq-j5hoxZ0dZCaenNPbW-INs6tP_jKA/exec",
+				method: "post",
+				params: {}
 			})
+			test.execute(function (response){
+				console.log(request);
+			});
+			console.log('test22')
+			var request = googleUser.client.request({
+				'method': 'GET',
+				'path': '/drive/v3/about',
+				'params': { 'fields': 'user' }
+			});
+			// Execute the API request.
+			request.execute(function (response) {
+				console.log(response);
+			});
 		}
 	</script>
 	<button id="login-button" disabled>Login with Google</button>
