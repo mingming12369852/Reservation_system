@@ -6,6 +6,19 @@
 	<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 	<meta name="google-signin-client_id"
 		content="222409392061-rute8gftvgj8tv1710kgnlnrgouera54.apps.googleusercontent.com">
+	<script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
+	<script>
+		$.ajax({
+			type: "post",
+			data: {
+				"method": "write",
+				"name": "Wayne",
+				"sex": "male",
+				"remark": "測試寫入功能"
+			},
+			url: "https://script.google.com/macros/s/AKfycbwG0we5gamMLgBmve5cZX8jt1IElLwN1FCENNq-j5hoxZ0dZCaenNPbW-INs6tP_jKA/exec" // 填入網路應用程式網址
+		});
+	</script>
 </head>
 
 <body>
