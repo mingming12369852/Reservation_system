@@ -21,17 +21,26 @@
 			var id_token = googleUser.getAuthResponse().id_token;
 			console.log("ID Token: " + id_token);
 			console.log('test11')
-			console.log('test22')
-			var request = googleUser.client.request({
-				'method': 'GET',
-				'path': '/drive/v3/about',
-				'params': { 'fields': 'user' }
-			});
-			// Execute the API request.
-			request.execute(function (response) {
-				console.log(response);
+			var test = gapi.client.request({
+				path: "https://script.google.com/macros/s/AKfycbwG0we5gamMLgBmve5cZX8jt1IElLwN1FCENNq-j5hoxZ0dZCaenNPbW-INs6tP_jKA/exec",
+				method: "post",
+				params: {}
+			})
+			test.execute(function (response) {
+				console.log(request);
 			});
 		}
+		console.log('test22')
+		var request = gapi.client.request({
+			'method': 'GET',
+			'path': '/drive/v3/about',
+			'params': { 'fields': 'user' }
+		});
+		// Execute the API request.
+		request.execute(function (response) {
+			console.log(response);
+		});
+
 	</script>
 	<button id="login-button" disabled>Login with Google</button>
 </body>
