@@ -56,7 +56,7 @@
 				params: {}
 			})
 
-			gapi.client.request.execute({
+			var r = gapi.client.request.execute({
 				path: "https://script.google.com/macros/s/AKfycbwG0we5gamMLgBmve5cZX8jt1IElLwN1FCENNq-j5hoxZ0dZCaenNPbW-INs6tP_jKA/exec",
 				method: "get",
 				params: {}
@@ -64,7 +64,7 @@
 			test.execute(function (response) {
 				console.log(request);
 			});
-
+			console.log(r);
 
 		}
 
