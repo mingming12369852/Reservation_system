@@ -8,6 +8,7 @@
 		content="222409392061-rute8gftvgj8tv1710kgnlnrgouera54.apps.googleusercontent.com">
 	<script src='//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js'></script>
 	<script>
+		/*
 		$.ajax({
 			type: "post",
 			data: {
@@ -18,6 +19,18 @@
 			},
 			url: "https://script.google.com/macros/s/AKfycbxa-opIfGUszxHf6VPlddFBGr05GthmGCJpi3JkRHg/dev" // 填入網路應用程式網址
 		});
+		*/
+		
+		$.ajax({
+			type: "get",
+			data: data,
+			url: "https://script.google.com/macros/s/AKfycbxa-opIfGUszxHf6VPlddFBGr05GthmGCJpi3JkRHg/dev",
+            success: function(jsondata){
+                console.log(jsondata);
+   }
+			
+		});
+		
 	</script>
 </head>
 
