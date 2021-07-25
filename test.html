@@ -6,27 +6,7 @@
 	<script src="https://apis.google.com/js/platform.js" async defer></script>
 	<meta name="google-signin-client_id"
 		content="222409392061-rute8gftvgj8tv1710kgnlnrgouera54.apps.googleusercontent.com">
-	<script>
-		// Create a request variable and assign a new XMLHttpRequest object to it.
-		var request = new XMLHttpRequest()
-
-		// Open a new connection, using the GET request on the URL endpoint
-		request.open('Get', 'https://script.googleapis.com/v1/scripts/AKfycbyIvGRV3Jawq5pUZMrIPsP640AUFz-jH6bNwCRt1Ub_GAtfXykywE5gC7L2gOGo4zJZ:run')
-
-		request.onload = function () {
-			// Begin accessing JSON data here
-		}
-
-
-		// Send request
-		request.send()
-	</script>
-	<script>
-		console.log("test5")
-
-	</script>
 </head>
-
 <body>
 	<div class="g-signin2" data-onsuccess="onSignIn"></div>
 	<script>
@@ -37,6 +17,11 @@
 			console.log('Name: ' + profile.getName());
 			console.log('Image URL: ' + profile.getImageUrl());
 			console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+			googleUser.client.request({
+				path:"https://script.google.com/macros/s/AKfycbwG0we5gamMLgBmve5cZX8jt1IElLwN1FCENNq-j5hoxZ0dZCaenNPbW-INs6tP_jKA/exec",
+				method:"post",
+				params:{""}
+			})
 		}
 	</script>
 	<button id="login-button" disabled>Login with Google</button>
