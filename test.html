@@ -50,20 +50,20 @@
 			var id_token = googleUser.getAuthResponse().id_token;
 			console.log("ID Token: " + id_token);
 			console.log('test11')
-			var test = gapi.client.request.({
-				path: "https://script.google.com/macros/s/AKfycbwG0we5gamMLgBmve5cZX8jt1IElLwN1FCENNq-j5hoxZ0dZCaenNPbW-INs6tP_jKA/exec",
-				method: "get",
-				params: {}
-			})
+			// var test = gapi.client.request.({
+			// 	path: "https://script.google.com/macros/s/AKfycbwG0we5gamMLgBmve5cZX8jt1IElLwN1FCENNq-j5hoxZ0dZCaenNPbW-INs6tP_jKA/exec",
+			// 	method: "get",
+			// 	params: {}
+			// })
 
 			var r = gapi.client.request.execute({
 				path: "https://script.google.com/macros/s/AKfycbwG0we5gamMLgBmve5cZX8jt1IElLwN1FCENNq-j5hoxZ0dZCaenNPbW-INs6tP_jKA/exec",
 				method: "get",
 				params: {}
 			})
-			test.execute(function (response) {
-				console.log(request);
-			});
+			// test.execute(function (response) {
+			// 	console.log(request);
+			// });
 			console.log(r);
 
 		}
